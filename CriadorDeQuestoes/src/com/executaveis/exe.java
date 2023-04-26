@@ -46,11 +46,7 @@ public class exe {
 			System.out.println("--------------------------------------");
 			for (Alternativas respostas1 : questoes1.getAlternativa()) {
 				System.out.println(respostas1.getAlternativa());
-				System.out.println("--------------------------------------");
-				System.out.println("--------------------------------------");
-				System.out.println("--------------------------------------");
-				System.out.println(respostas1.getCorreta());
-				System.out.println("--------------------------------------");
+				
 			}
 
 		}
