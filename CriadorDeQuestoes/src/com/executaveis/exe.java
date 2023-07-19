@@ -1,56 +1,50 @@
 package com.executaveis;
 
-import com.classes.Questoes;
-import com.classes.Alternativas;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
+import java.util.Scanner;
+
+import com.classes.Questao;
 
 public class exe {
 
-	public static void main(String[] ags) {
+	public static void main(String[] args) {
 
-		List<Questoes> perguntas = new ArrayList<Questoes>();
+		Scanner entrada = new Scanner(System.in);
 
-		String quantidadeA = JOptionPane.showInputDialog("Quantas questões voce deseja criar ?");
+		List<Questao> questoes = new ArrayList<>();
 
-		int quantidade = Integer.valueOf(quantidadeA);
+		// Criar e adicionar questões à lista
+
+		System.out.println("Quantas questões deseja criar ? Digite o numero : ");
+
+		int quantidade = entrada.nextInt();
 
 		for (int i = 0; i < quantidade; i++) {
-			Questoes questao = new Questoes();
-			String pergunta = JOptionPane.showInputDialog("Por favor, digite sua " + (i + 1) + "º" + " pergunta aqui");
-			questao.setPergunta(pergunta);
-			perguntas.add(questao);
+			System.out.println("DIGITE SUA PERGUNTA AQUI: ");
 
-			for (char letras = 'a'; letras <= 'd'; letras++) {
-				Alternativas alternativa = new Alternativas();
-				String respostas = JOptionPane.showInputDialog(
-						"Letra " + letras + ": (Digite a alternativa que deseja incluir na letra " + letras);
-				alternativa.setAlternativa(respostas);
+			String enunciado = entrada.next();
 
-				int corretas = JOptionPane.showConfirmDialog(null, "Essa é a resposta correta?");
+			Questao questao = new Questao(enunciado);
 
-				if (corretas == 1) {
-					alternativa.setCorreta(respostas);
-				} else {
+			for (char j = 'a'; j < 'e'; j++) {
+
+				System.out.println("Digite sua alternativa " + j + "aqui: ");
+				String alternativas = entrada.next();
+				questao.adicionarOpcao(alternativas);
+
+				System.out.println("Essa é a alternativa correta? Digite Sim ou Nao:");
+				String altenativaCorreta = entrada.next();
+
+				if (altenativaCorreta.equalsIgnoreCase("sim")) {
+
+					questao.setRespostaCorreta(String.valueOf(j));
 				}
-
-				questao.getAlternativa().add(alternativa);
-
-			}
-
-		}
-
-		for (Questoes questoes1 : perguntas) {
-			System.out.println(questoes1.getPergunta());
-			System.out.println("--------------------------------------");
-			for (Alternativas respostas1 : questoes1.getAlternativa()) {
-				System.out.println(respostas1.getAlternativa());
 				
+				questoes.add(questao);
 			}
-
 		}
-
+		entrada.close();
 	}
 
 }
