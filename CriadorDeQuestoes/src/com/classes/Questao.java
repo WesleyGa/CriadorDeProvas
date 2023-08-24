@@ -6,18 +6,16 @@ import java.util.List;
 public class Questao {
 
 	String pergunta;
-	String respostaCorreta;
+	String correta;
+	private boolean corretaRespondida;
 
-	public Questao(String pergunta) {
-		this.pergunta = pergunta;
-		List<Alternativas> alternativas = new ArrayList<Alternativas>();
-
+	public Questao() {
+		corretaRespondida = false;
 	}
 
-	public void adicionarOpcao(String opcao) {
-		Alternativas alterna = new Alternativas();
-		alterna.setOpcões(opcao);
-	}
+	// Lista para armazenar as 4 alternativas dentro de uma questão.
+
+	List<Alternativas> alternativas = new ArrayList<Alternativas>();
 
 	public String getPergunta() {
 		return pergunta;
@@ -27,12 +25,52 @@ public class Questao {
 		this.pergunta = pergunta;
 	}
 
-	public String getRespostaCorreta() {
-		return respostaCorreta;
+	public List<Alternativas> getAlternativas() {
+		return alternativas;
 	}
 
-	public void setRespostaCorreta(String respostaCorreta) {
-		this.respostaCorreta = respostaCorreta;
+	public void setAlternativas(List<Alternativas> alternativas) {
+		this.alternativas = alternativas;
+	}
+
+	public String getCorreta() {
+		return correta;
+	}
+
+	public void setCorreta(String correta) {
+		this.correta = correta;
+	}
+
+	// Método para evitar que a pergunta de verificação da resposta correta seja
+	// exibida caso já exista uma resposta correta registrada.
+
+	public void armazenarCorreta() {
+		if (!corretaRespondida) {
+			corretaRespondida = true;
+			System.out.println("Armazenando...");
+
+		}
+
+	}
+
+	// Este método está atualmente sem utilidade, no entanto, em breve farei
+	// modificações no código para sua utilização.
+
+	public void naoArmazenar() {
+		if (corretaRespondida) {
+			corretaRespondida = false;
+			System.out.println("Outra pegunta");
+
+		} else {
+			System.out.println("Ja foi respondida");
+		}
+
+	}
+
+	// Retorna se a pergunta já foi respondida ou ainda não recebeu resposta.
+
+	public boolean estaRespondida() {
+		return corretaRespondida;
 	}
 
 }

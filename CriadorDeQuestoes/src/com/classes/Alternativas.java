@@ -2,14 +2,14 @@ package com.classes;
 
 public class Alternativas {
 
-	String opcões;
+	String alternativa;
 
-	public String getOpcões() {
-		return opcões;
+	public String getAlternativa() {
+		return alternativa;
 	}
 
-	public void setOpcões(String opcões) {
-		this.opcões = opcões;
+	public void setAlternativa(String alternativa) {
+		this.alternativa = alternativa;
 	}
 
 }
